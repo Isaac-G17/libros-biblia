@@ -1,0 +1,9 @@
+:host { display: block; }
+.pista {
+  height: 1rem; overflow: hidden;
+  background: var(--color-superficie); border: 2px solid var(--color-borde-fuerte); border-radius: var(--radio-m);
+}
+.relleno {
+  height: 100%; background: var(--color-secundario);
+  transition: width var(--duracion-media) var(--easing);
+}

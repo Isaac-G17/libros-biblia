@@ -1,0 +1,11 @@
+<div
+  class="pista"
+  role="progressbar"
+  aria-valuemin="0"
+  [attr.aria-valuemax]="maximo()"
+  [attr.aria-valuenow]="valor()"
+  [attr.aria-valuetext]="valor() + ' de ' + maximo()"
+  [attr.aria-label]="etiqueta()"
+>
+  <div class="relleno" [style.width.%]="porcentaje()"></div>
+</div>

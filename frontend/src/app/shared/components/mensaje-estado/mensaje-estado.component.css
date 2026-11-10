@@ -1,0 +1,6 @@
+:host { display: block; }
+.estado { display: grid; gap: var(--espacio-3); justify-items: center; text-align: center; }
+.icono { font-size: 2.5rem; line-height: 1; }
+.error .titulo { color: var(--color-error); }
+.acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--espacio-3); width: 100%; }
+.acciones > * { flex: 1 1 10rem; }

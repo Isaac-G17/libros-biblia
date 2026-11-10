@@ -1,0 +1,15 @@
+<app-tarjeta>
+  <div class="estado" [class.error]="tipo() === 'error'" [attr.role]="tipo() === 'error' ? 'alert' : 'status'">
+    <span class="icono" aria-hidden="true">{{ icono() }}</span>
+    <h2 class="titulo">{{ titulo() }}</h2>
+    @if (mensaje()) {
+      <p>{{ mensaje() }}</p>
+    }
+    <div class="acciones">
+      @if (accionTexto()) {
+        <button type="button" app-boton variante="primario" (click)="accion.emit()">{{ accionTexto() }}</button>
+      }
+      <ng-content />
+    </div>
+  </div>
+</app-tarjeta>

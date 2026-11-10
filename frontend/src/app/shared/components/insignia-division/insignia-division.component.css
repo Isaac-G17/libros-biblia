@@ -1,0 +1,6 @@
+:host { display: inline-block; }
+.insignia {
+  display: inline-block; padding: var(--espacio-1) var(--espacio-3);
+  background: var(--color-categoria); color: var(--color-sobre-primario);
+  border-radius: 999px; font-size: var(--texto-apoyo); font-weight: 700;
+}

@@ -1,0 +1,25 @@
+<app-tarjeta>
+  <div class="resultado" role="status">
+    @if (esNinos()) {
+      <p class="mascota" aria-hidden="true">🦉</p>
+    }
+    <h2>{{ titulo() }}</h2>
+
+    @if (esNinos()) {
+      <p class="estrellas" role="img" [attr.aria-label]="estrellas() + ' de 3 estrellas'">
+        @for (n of posiciones; track n) {
+          <span aria-hidden="true">{{ n <= estrellas() ? '★' : '☆' }}</span>
+        }
+      </p>
+    } @else {
+      <p class="porcentaje">{{ porcentaje() }}%</p>
+    }
+
+    <p>Acertaste <strong>{{ aciertos() }}</strong> de {{ total() }}.</p>
+
+    <div class="acciones">
+      <button type="button" app-boton variante="primario" (click)="repetir.emit()">Jugar de nuevo</button>
+      <ng-content />
+    </div>
+  </div>
+</app-tarjeta>

@@ -1,0 +1,12 @@
+:host {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--espacio-2);
+  min-height: var(--toque-minimo); padding: var(--espacio-2) var(--espacio-6);
+  border: 2px solid var(--color-primario); border-radius: var(--radio-m);
+  background: var(--color-superficie); color: var(--color-primario);
+  font: inherit; font-weight: 700; text-align: center; text-decoration: none; cursor: pointer;
+  transition: transform var(--duracion-rapida) var(--easing), filter var(--duracion-rapida) var(--easing);
+}
+:host(.primario) { background: var(--color-primario); color: var(--color-sobre-primario); }
+:host(.bloque) { display: flex; width: 100%; }
+:host(:hover) { filter: brightness(0.94); }
+:host(:active) { transform: scale(0.98); }

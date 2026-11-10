@@ -1,0 +1,13 @@
+:host {
+  display: grid; gap: var(--espacio-3);
+  padding: var(--espacio-4);
+  background: var(--color-superficie); color: var(--color-texto);
+  border: 2px solid var(--color-borde); border-radius: var(--radio-l);
+  box-shadow: var(--sombra-1); text-decoration: none;
+}
+:host(.interactiva) {
+  cursor: pointer;
+  transition: border-color var(--duracion-rapida) var(--easing), transform var(--duracion-rapida) var(--easing);
+}
+:host(.interactiva:hover) { border-color: var(--color-primario); }
+:host(.interactiva:active) { transform: scale(0.99); }

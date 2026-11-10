@@ -1,0 +1,6 @@
+:host { display: block; }
+a {
+  display: inline-flex; align-items: center; gap: var(--espacio-2);
+  min-height: var(--toque-minimo);
+  color: var(--color-primario); font-weight: 700; text-decoration: none;
+}

@@ -1,0 +1,33 @@
+<a class="enlace-saltar" href="#contenido">Saltar al contenido</a>
+
+<header class="cabecera">
+  <a class="marca" routerLink="/"><span aria-hidden="true">📖</span> Libros de la Biblia</a>
+
+  @if (progress.mode(); as modo) {
+    <div class="controles">
+      <app-conmutador-modo [modo]="modo" (cambio)="progress.setMode($event)" />
+      <button
+        type="button"
+        class="boton-icono"
+        [attr.aria-label]="progress.soundEnabled() ? 'Silenciar sonidos' : 'Activar sonidos'"
+        (click)="progress.setSoundEnabled(!progress.soundEnabled())"
+      >
+        <span aria-hidden="true">{{ progress.soundEnabled() ? '🔊' : '🔇' }}</span>
+      </button>
+    </div>
+  }
+</header>
+
+@if (!conectividad.online()) {
+  <p class="aviso-conexion" role="status">
+    Sin conexión. Tu avance se guarda en este dispositivo.
+  </p>
+}
+
+<main id="contenido" tabindex="-1">
+  <router-outlet />
+</main>
+
+@if (progress.mode()) {
+  <app-barra-navegacion [destinos]="destinos" />
+}

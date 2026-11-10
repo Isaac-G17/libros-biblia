@@ -1,0 +1,8 @@
+:host { display: block; }
+.resultado { display: grid; gap: var(--espacio-3); justify-items: center; text-align: center; }
+.mascota { font-size: 3.5rem; line-height: 1; animation: saltar var(--duracion-media) var(--easing); }
+.estrellas { font-size: 2.5rem; letter-spacing: 0.25rem; color: var(--color-acento); line-height: 1; }
+.porcentaje { font-size: var(--texto-hero); font-weight: 700; color: var(--color-primario); line-height: 1; }
+.acciones { display: flex; flex-wrap: wrap; gap: var(--espacio-3); width: 100%; }
+.acciones > * { flex: 1 1 10rem; }
+@keyframes saltar { 0% { transform: translateY(0); } 50% { transform: translateY(-0.5rem); } 100% { transform: translateY(0); } }

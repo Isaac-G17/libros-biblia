@@ -1,0 +1,17 @@
+/* Sticky dentro del shell: no tapa el contenido aunque se amplíe el texto. */
+:host {
+  position: sticky; bottom: 0; z-index: 10; display: block;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--color-superficie); border-top: 2px solid var(--color-borde);
+}
+ul { display: flex; max-width: 40rem; margin: 0 auto; padding: 0; list-style: none; }
+li { flex: 1; }
+a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--espacio-1);
+  min-height: 3.5rem; padding: var(--espacio-2) var(--espacio-1);
+  border-top: 4px solid transparent; /* el activo se marca también con barra y negrita, no solo con color */
+  color: var(--color-texto-suave); font-size: var(--texto-apoyo); font-weight: 600; text-decoration: none;
+  transition: color var(--duracion-rapida) var(--easing);
+}
+a.activo { border-top-color: var(--color-primario); color: var(--color-primario); font-weight: 700; }
+.icono { font-size: 1.5rem; line-height: 1; }

@@ -1,0 +1,17 @@
+<nav aria-label="Navegación principal">
+  <ul>
+    @for (destino of destinos(); track destino.ruta) {
+      <li>
+        <a
+          [routerLink]="destino.ruta"
+          routerLinkActive="activo"
+          ariaCurrentWhenActive="page"
+          [routerLinkActiveOptions]="{ exact: destino.exacto ?? false }"
+        >
+          <span class="icono" aria-hidden="true">{{ destino.icono }}</span>
+          <span>{{ destino.etiqueta }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,89 @@
+/* Tokens de diseño. Los componentes usan SOLO estas variables, sin colores fijos. */
+
+/* Tema independiente: un color por división (blanco sobre cada uno ≥ 4.5:1) */
+:root {
+  --cat-pentateuco: #6d4c41;
+  --cat-historicos: #1f5f8b;
+  --cat-poeticos: #ad1457;
+  --cat-profetas-mayores: #b3261e;
+  --cat-profetas-menores: #b45309;
+  --cat-evangelios: #1b6e3c;
+  --cat-hechos: #00796b;
+  --cat-cartas-pablo: #4a3f9f;
+  --cat-cartas-generales: #455a64;
+  --cat-profecia: #7b1fa2;
+
+  /* Escala de espaciado (base 4px) */
+  --espacio-1: 0.25rem;
+  --espacio-2: 0.5rem;
+  --espacio-3: 0.75rem;
+  --espacio-4: 1rem;
+  --espacio-6: 1.5rem;
+  --espacio-8: 2rem;
+
+  /* Animación: 150–300ms, easing suave */
+  --duracion-rapida: 150ms;
+  --duracion-media: 250ms;
+  --easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Modo adultos (tema base) */
+:root,
+.modo-adultos {
+  --color-primario: #2f4a75;
+  --color-sobre-primario: #ffffff;
+  --color-secundario: #35605a;
+  --color-acento: #b45309;
+
+  --color-fondo: #faf8f3;
+  --color-superficie: #ffffff;
+  --color-texto: #1f2933;
+  --color-texto-suave: #52606d;
+  --color-borde: #d9d2c3;
+  --color-borde-fuerte: #8a8372; /* bordes de controles: ≥ 3:1 */
+  --color-foco: #b45309;
+
+  --color-exito: #1b6e3c;
+  --color-exito-fondo: #e6f4ea;
+  --color-error: #a12626;
+  --color-error-fondo: #fbeaea;
+  --color-aviso: #8a5a00;
+  --color-aviso-fondo: #fff3d6;
+
+  --fuente-titulo: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fuente-cuerpo: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --texto-apoyo: 1rem;
+  --texto-cuerpo: 1.125rem;
+  --texto-subtitulo: 1.25rem;
+  --texto-titulo: 1.75rem;
+  --texto-hero: 2.25rem;
+  --interlineado: 1.5;
+
+  --radio-s: 0.5rem;
+  --radio-m: 0.75rem;
+  --radio-l: 1rem;
+  --sombra-1: 0 1px 2px rgb(31 41 51 / 0.12);
+  --toque-minimo: 2.75rem; /* 44px */
+}
+
+/* Modo niños: solo redefine tokens, no duplica estilos */
+.modo-ninos {
+  --color-primario: #c2410c;
+  --color-secundario: #0e7490;
+  --color-acento: #6d28d9;
+  --color-fondo: #fff4d6;
+  --color-borde: #f0c36b;
+  --color-borde-fuerte: #a86b00;
+
+  --fuente-titulo: ui-rounded, 'Trebuchet MS', system-ui, sans-serif;
+  --texto-apoyo: 1.125rem;
+  --texto-cuerpo: 1.25rem;
+  --texto-subtitulo: 1.5rem;
+  --texto-titulo: 2rem;
+  --texto-hero: 2.5rem;
+
+  --radio-s: 1rem;
+  --radio-m: 1.5rem;
+  --radio-l: 2rem;
+  --toque-minimo: 3.5rem; /* 56px */
+}
