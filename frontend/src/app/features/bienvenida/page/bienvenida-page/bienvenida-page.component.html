@@ -1,0 +1,28 @@
+<section class="pagina">
+  @if (paso() === 1) {
+    <p class="emoji" aria-hidden="true">📖</p>
+    <h1>Aprende los libros de la Biblia</h1>
+    <ul class="ventajas">
+      <li><span aria-hidden="true">📚</span> Aprende por grupos, con calma</li>
+      <li><span aria-hidden="true">✍️</span> Practica con preguntas cortas</li>
+      <li><span aria-hidden="true">🔒</span> Sin registro: tu avance queda en tu dispositivo</li>
+    </ul>
+    <button type="button" app-boton variante="primario" bloque (click)="paso.set(2)">Empezar</button>
+    <button type="button" class="enlace" (click)="omitir()">Omitir</button>
+  } @else {
+    <h1>¿Quién va a aprender hoy?</h1>
+    <div class="modos">
+      <button type="button" class="modo" (click)="elegirModo('kids')">
+        <span class="emoji" aria-hidden="true">🧒</span>
+        <strong>Niños</strong>
+        <span>Juegos cortos y letra grande</span>
+      </button>
+      <button type="button" class="modo" (click)="elegirModo('adult')">
+        <span class="emoji" aria-hidden="true">🧑</span>
+        <strong>Adultos</strong>
+        <span>Más detalle y profundidad</span>
+      </button>
+    </div>
+    <button type="button" class="enlace" (click)="paso.set(1)">Atrás</button>
+  }
+</section>

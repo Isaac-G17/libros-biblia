@@ -1,0 +1,18 @@
+.pagina { display: grid; gap: var(--espacio-4); text-align: center; }
+.emoji { font-size: 3rem; line-height: 1; }
+.ventajas { display: grid; gap: var(--espacio-3); margin: 0; padding: 0; list-style: none; text-align: start; }
+.modos { display: grid; gap: var(--espacio-4); }
+.modo {
+  display: grid; gap: var(--espacio-1); justify-items: center;
+  min-height: 7rem; padding: var(--espacio-4);
+  border: 2px solid var(--color-borde-fuerte); border-radius: var(--radio-l);
+  background: var(--color-superficie); color: var(--color-texto); cursor: pointer;
+  transition: border-color var(--duracion-rapida) var(--easing), transform var(--duracion-rapida) var(--easing);
+}
+.modo:hover { border-color: var(--color-primario); }
+.modo:active { transform: scale(0.98); }
+.enlace {
+  min-height: var(--toque-minimo); border: 0; background: none;
+  color: var(--color-primario); font-weight: 700; text-decoration: underline; cursor: pointer;
+}
+@media (min-width: 30rem) { .modos { grid-template-columns: 1fr 1fr; } }
