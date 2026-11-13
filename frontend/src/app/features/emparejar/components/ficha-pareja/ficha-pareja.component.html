@@ -1,0 +1,10 @@
+<button
+  type="button"
+  class="ficha"
+  [class.seleccionada]="seleccionada()"
+  [class.error]="enError()"
+  [attr.aria-pressed]="seleccionada()"
+  (click)="elegir.emit()"
+>
+  {{ texto() }}
+</button>

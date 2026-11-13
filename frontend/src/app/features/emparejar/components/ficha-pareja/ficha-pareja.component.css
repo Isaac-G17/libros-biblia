@@ -1,0 +1,12 @@
+:host { display: block; }
+.ficha {
+  width: 100%; min-height: var(--toque-minimo); padding: var(--espacio-2) var(--espacio-3);
+  border: 2px solid var(--color-borde-fuerte); border-radius: var(--radio-m);
+  background: var(--color-superficie); color: var(--color-texto);
+  font-weight: 600; text-align: center; cursor: pointer;
+  transition: border-color var(--duracion-rapida) var(--easing), background-color var(--duracion-rapida) var(--easing);
+}
+.ficha:hover { border-color: var(--color-primario); }
+.ficha.seleccionada { border-color: var(--color-primario); background: color-mix(in srgb, var(--color-primario) 12%, var(--color-superficie)); }
+/* El error se marca con borde y fondo de aviso, nunca solo con un cambio sutil de color */
+.ficha.error { border-color: var(--color-aviso); background: var(--color-aviso-fondo); }

@@ -1,0 +1,13 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.apoyo { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }
+.zona { display: grid; gap: var(--espacio-2); }
+.etiqueta-zona { font-size: var(--texto-apoyo); color: var(--color-texto-suave); text-transform: uppercase; letter-spacing: 0.04em; }
+
+.encontradas { display: grid; gap: var(--espacio-1); margin: 0; padding: 0; list-style: none; }
+.encontradas li {
+  padding: var(--espacio-2) var(--espacio-3); border-radius: var(--radio-m);
+  background: var(--color-exito-fondo); color: var(--color-exito); font-weight: 600; font-size: var(--texto-apoyo);
+}
+
+.tablero { display: grid; grid-template-columns: 1fr 1fr; gap: var(--espacio-3); align-items: start; }
+.columna { display: grid; gap: var(--espacio-2); }

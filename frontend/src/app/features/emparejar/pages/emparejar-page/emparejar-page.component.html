@@ -1,0 +1,73 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="5" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    <section class="pagina">
+      <app-boton-volver ruta="/jugar" etiqueta="Jugar" />
+      <h1>Emparejar</h1>
+
+      @if (!sesion.available()) {
+        <app-mensaje-estado titulo="Aún no hay suficientes libros" mensaje="Aprende al menos 3 libros para jugar a emparejar.">
+          <a app-boton variante="primario" routerLink="/aprender">Ir a Aprender</a>
+        </app-mensaje-estado>
+      } @else if (sesion.finished()) {
+        <app-resultado-juego
+          [aciertos]="sesion.correctCount()"
+          [total]="sesion.total()"
+          [esNinos]="esNinos()"
+          (repetir)="sesion.playAgain()"
+        >
+          <a app-boton routerLink="/jugar">Otro juego</a>
+        </app-resultado-juego>
+      } @else {
+        <p class="apoyo">
+          {{ esNinos() ? 'Toca un libro y luego su grupo.' : 'Toca un libro y luego el tema que le corresponde.' }}
+        </p>
+
+        @if (sesion.matchedPairs().length > 0) {
+          <div class="zona">
+            <h2 class="etiqueta-zona">Parejas encontradas</h2>
+            <ul class="encontradas">
+              @for (pareja of sesion.matchedPairs(); track pareja.bookId) {
+                <li><span aria-hidden="true">✓</span> {{ pareja.left }} — {{ pareja.right }}</li>
+              }
+            </ul>
+          </div>
+        }
+
+        <div class="tablero" aria-live="polite">
+          <div class="columna">
+            @for (p of sesion.leftItems(); track p.bookId) {
+              <app-ficha-pareja
+                [texto]="p.left"
+                [seleccionada]="sesion.selectedLeftId() === p.bookId"
+                [enError]="sesion.wrongFlash()?.leftId === p.bookId"
+                (elegir)="sesion.selectCard('left', p.bookId)"
+              />
+            }
+          </div>
+          <div class="columna">
+            @for (p of sesion.rightItems(); track p.bookId) {
+              <app-ficha-pareja
+                [texto]="p.right"
+                [seleccionada]="sesion.selectedRightId() === p.bookId"
+                [enError]="sesion.wrongFlash()?.rightId === p.bookId"
+                (elegir)="sesion.selectCard('right', p.bookId)"
+              />
+            }
+          </div>
+        </div>
+      }
+    </section>
+  }
+}
