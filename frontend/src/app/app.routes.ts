@@ -28,6 +28,18 @@ export const routes: Routes = [
         path: 'progreso',
         loadChildren: () => import('./features/progreso/progreso.routes').then((m) => m.PROGRESO_ROUTES),
       },
+      {
+        path: 'ordenar',
+        loadChildren: () => import('./features/ordenar/ordenar.routes').then((m) => m.ORDENAR_ROUTES),
+      },
+            {
+        path: 'jugar',
+        loadChildren: () => import('./features/jugar/jugar.routes').then((m) => m.JUGAR_ROUTES),
+      },
+      {
+        path: 'emparejar',
+        loadChildren: () => import('./features/emparejar/emparejar.routes').then((m) => m.EMPAREJAR_ROUTES),
+      },
     ],
   },
   { path: '**', redirectTo: '' },

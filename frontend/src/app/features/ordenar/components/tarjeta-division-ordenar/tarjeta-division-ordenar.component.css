@@ -1,0 +1,7 @@
+:host { display: block; }
+.division { border-inline-start: 0.5rem solid var(--color-categoria); text-decoration: none; color: var(--color-texto); }
+.division.bloqueada { border-inline-start-color: var(--color-borde-fuerte); opacity: 0.75; }
+.nombre { font-size: var(--texto-subtitulo); color: var(--color-categoria); }
+.bloqueada .nombre { color: var(--color-texto-suave); }
+.estado { font-weight: 600; font-size: var(--texto-apoyo); }
+.estado.muted { color: var(--color-texto-suave); font-weight: 500; }

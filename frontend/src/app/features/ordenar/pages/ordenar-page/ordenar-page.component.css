@@ -1,0 +1,36 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.apoyo { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }
+.zona { display: grid; gap: var(--espacio-2); }
+.etiqueta-zona { font-size: var(--texto-apoyo); color: var(--color-texto-suave); text-transform: uppercase; letter-spacing: 0.04em; }
+.vacio { color: var(--color-texto-suave); font-style: italic; }
+
+.colocados { display: grid; gap: var(--espacio-2); margin: 0; padding: 0; list-style: none; }
+.colocados li {
+  display: flex; align-items: center; gap: var(--espacio-2);
+  min-height: var(--toque-minimo); padding: var(--espacio-2) var(--espacio-3);
+  border: 2px solid var(--color-borde-fuerte); border-radius: var(--radio-m);
+  background: var(--color-superficie); font-weight: 600;
+}
+.colocados li.correcto { border-color: var(--color-exito); background: var(--color-exito-fondo); }
+.colocados li.incorrecto { border-color: var(--color-aviso); background: var(--color-aviso-fondo); }
+.numero {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--color-primario); color: var(--color-sobre-primario); font-size: var(--texto-apoyo); font-weight: 700;
+}
+
+.opciones { display: flex; flex-wrap: wrap; gap: var(--espacio-2); }
+.ficha {
+  min-height: var(--toque-minimo); padding: var(--espacio-2) var(--espacio-4);
+  border: 2px solid var(--color-borde-fuerte); border-radius: var(--radio-m);
+  background: var(--color-superficie); color: var(--color-texto); font-weight: 600; cursor: pointer;
+  transition: border-color var(--duracion-rapida) var(--easing), transform var(--duracion-rapida) var(--easing);
+}
+.ficha:hover { border-color: var(--color-primario); }
+.ficha:active { transform: scale(0.97); }
+
+.orden-correcto { padding: var(--espacio-3); border-radius: var(--radio-m); background: var(--color-aviso-fondo); }
+
+.acciones { display: flex; flex-wrap: wrap; gap: var(--espacio-3); }
+.acciones > * { flex: 1 1 8rem; }
+.acciones button[disabled] { opacity: 0.5; cursor: not-allowed; }

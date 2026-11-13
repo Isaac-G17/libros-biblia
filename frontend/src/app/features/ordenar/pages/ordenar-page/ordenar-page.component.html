@@ -1,0 +1,91 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="5" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    @if (division(); as div) {
+      <section class="pagina">
+        <app-boton-volver ruta="/ordenar" etiqueta="Divisiones" />
+        <h1>Ordenar: {{ div.name }}</h1>
+
+        @if (!sesion.available()) {
+          <app-mensaje-estado titulo="Aún no hay suficientes libros" mensaje="Aprende al menos 3 libros de esta división para jugar.">
+            <a app-boton variante="primario" [routerLink]="['/aprender', div.id]">Ir a Aprender</a>
+          </app-mensaje-estado>
+        } @else if (!sesion.revealed()) {
+          <p class="apoyo">
+            {{ esNinos() ? 'Toca los libros en el orden correcto, del primero al último.' : 'Toca cada libro en el orden en que aparecen en la Biblia.' }}
+          </p>
+
+          <div class="zona" aria-label="Tu orden">
+            <h2 class="etiqueta-zona">Tu orden</h2>
+            @if (sesion.placed().length === 0) {
+              <p class="vacio">Aún no has colocado ningún libro.</p>
+            } @else {
+              <ol class="colocados">
+                @for (libro of sesion.placed(); track libro.id; let i = $index) {
+                  <li><span class="numero">{{ i + 1 }}</span> {{ libro.name }}</li>
+                }
+              </ol>
+            }
+          </div>
+
+          <div class="zona" aria-label="Libros por colocar">
+            <h2 class="etiqueta-zona">Libros</h2>
+            <div class="opciones">
+              @for (libro of sesion.pool(); track libro.id) {
+                <button type="button" class="ficha" (click)="sesion.place(libro.id)">{{ libro.name }}</button>
+              }
+            </div>
+          </div>
+
+          <div class="acciones">
+            <button type="button" app-boton (click)="sesion.undoLast()" [disabled]="sesion.placed().length === 0">Deshacer</button>
+            <button type="button" app-boton variante="primario" (click)="sesion.check()" [disabled]="!sesion.allPlaced()">Comprobar</button>
+          </div>
+        } @else {
+          <div class="zona" aria-live="polite">
+            <h2 class="etiqueta-zona">Resultado</h2>
+            <ol class="colocados">
+              @for (libro of sesion.placed(); track libro.id; let i = $index) {
+                <li [class.correcto]="sesion.results()[i]" [class.incorrecto]="!sesion.results()[i]">
+                  <span class="numero">{{ i + 1 }}</span> {{ libro.name }}
+                  @if (sesion.results()[i]) {
+                    <span aria-hidden="true">✓</span><span class="solo-lector">(en su lugar)</span>
+                  } @else {
+                    <span aria-hidden="true">✗</span><span class="solo-lector">(fuera de lugar)</span>
+                  }
+                </li>
+              }
+            </ol>
+            @if (sesion.correctCount() < sesion.total()) {
+              <p class="orden-correcto">Orden correcto: {{ ordenCorrectoTexto() }}</p>
+            }
+          </div>
+
+          <app-resultado-juego
+            [aciertos]="sesion.correctCount()"
+            [total]="sesion.total()"
+            [esNinos]="esNinos()"
+            (repetir)="sesion.playAgain()"
+          >
+            <a app-boton routerLink="/ordenar">Otra división</a>
+          </app-resultado-juego>
+        }
+      </section>
+    } @else {
+      <app-mensaje-estado titulo="No encontramos esa división" mensaje="Puede que el enlace esté incompleto.">
+        <a app-boton variante="primario" routerLink="/ordenar">Ver divisiones</a>
+      </app-mensaje-estado>
+    }
+  }
+}

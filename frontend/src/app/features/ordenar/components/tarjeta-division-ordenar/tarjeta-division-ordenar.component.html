@@ -1,0 +1,15 @@
+@if (habilitada()) {
+  <a app-tarjeta interactiva class="division" [routerLink]="['/ordenar', progreso().division.id]" [style.--color-categoria]="color()">
+    <h3 class="nombre">{{ progreso().division.name }}</h3>
+    <p class="estado">
+      <span aria-hidden="true">✓</span> {{ progreso().seen }} libros listos para ordenar
+    </p>
+  </a>
+} @else {
+  <app-tarjeta class="division bloqueada" [style.--color-categoria]="color()">
+    <h3 class="nombre">{{ progreso().division.name }}</h3>
+    <p class="estado muted">
+      <span aria-hidden="true">🔒</span> Aprende {{ faltan() }} libro{{ faltan() === 1 ? '' : 's' }} más para desbloquear
+    </p>
+  </app-tarjeta>
+}

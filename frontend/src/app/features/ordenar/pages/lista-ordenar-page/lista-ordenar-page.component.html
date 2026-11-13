@@ -1,0 +1,33 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="5" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    <section class="pagina">
+      <app-boton-volver ruta="/jugar" etiqueta="Jugar" />
+      <h1>Ordenar</h1>
+      <p class="apoyo">Pon los libros en el orden correcto. Cada división se desbloquea al aprender al menos 3 de sus libros.</p>
+
+      @if (!hayDesbloqueadas()) {
+        <app-mensaje-estado titulo="Aún no hay divisiones listas" mensaje="Aprende algunos libros y vuelve a intentarlo.">
+          <a app-boton variante="primario" routerLink="/aprender">Ir a Aprender</a>
+        </app-mensaje-estado>
+      } @else {
+        <ul class="lista">
+          @for (item of recorrido.divisions(); track item.division.id) {
+            <li><app-tarjeta-division-ordenar [progreso]="item" /></li>
+          }
+        </ul>
+      }
+    </section>
+  }
+}
