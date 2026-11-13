@@ -1,0 +1,70 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="5" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    @if (division(); as div) {
+      <section class="pagina">
+        <app-boton-volver ruta="/aprender" etiqueta="Divisiones" />
+        <h1 class="titulo" [style.--color-categoria]="'var(--cat-' + div.id + ')'">{{ div.name }}</h1>
+
+        @if (paso() === 0) {
+          <app-tarjeta>
+            <p>{{ div.description }}</p>
+            <p class="apoyo">{{ etiquetaTestamento[div.testament] }} · {{ total() }} libros, en este orden:</p>
+            <ol class="orden" [attr.start]="primerNumero()">
+              @for (libro of libros(); track libro.id) {
+                <li>{{ libro.name }}</li>
+              }
+            </ol>
+          </app-tarjeta>
+          <button type="button" app-boton variante="primario" bloque (click)="empezar()">Empezar</button>
+        } @else if (libroActual(); as libro) {
+          <app-barra-progreso [valor]="paso()" [maximo]="total()" etiqueta="Avance en la división" />
+          <p class="apoyo">Libro {{ paso() }} de {{ total() }} en esta división</p>
+
+          <div aria-live="polite">
+            <app-ficha-libro
+              [libro]="libro"
+              [totalLibros]="catalogo.books().length"
+              [nombreDivision]="div.name"
+              [esNinos]="esNinos()"
+            />
+          </div>
+
+          <div class="acciones">
+            <button type="button" app-boton (click)="anterior()">Anterior</button>
+            <button type="button" app-boton variante="primario" (click)="avanzar()">
+              {{ paso() === total() ? 'Terminar' : 'Siguiente' }}
+            </button>
+          </div>
+        } @else if (terminado()) {
+          <app-mensaje-estado
+            tipo="exito"
+            [titulo]="esNinos() ? '¡Lo lograste!' : 'División completada'"
+            [mensaje]="'Conociste los ' + total() + ' libros de «' + div.name + '». ¿Probamos qué recuerdas?'"
+          >
+            <a app-boton variante="primario" routerLink="/practicar" [queryParams]="{ division: div.id }">Practicar esta división</a>
+            @if (siguiente(); as sig) {
+              <a app-boton [routerLink]="['/aprender', sig.id]">Siguiente: {{ sig.name }}</a>
+            }
+            <button type="button" app-boton (click)="repetir()">Repasar otra vez</button>
+          </app-mensaje-estado>
+        }
+      </section>
+    } @else {
+      <app-mensaje-estado titulo="No encontramos esa división" mensaje="Puede que el enlace esté incompleto.">
+        <a app-boton variante="primario" routerLink="/aprender">Ver las divisiones</a>
+      </app-mensaje-estado>
+    }
+  }
+}

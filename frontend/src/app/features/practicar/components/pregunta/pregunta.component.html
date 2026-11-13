@@ -1,0 +1,31 @@
+<app-tarjeta>
+  <h2 id="enunciado">{{ pregunta().prompt }}</h2>
+
+  <div class="opciones" role="group" aria-labelledby="enunciado">
+    @for (opcion of pregunta().choices; track opcion.id) {
+      <button
+        type="button"
+        class="opcion"
+        [class.correcta]="respondida() && opcion.id === pregunta().correctId"
+        [class.incorrecta]="opcion.id === seleccionadaId() && opcion.id !== pregunta().correctId"
+        [attr.aria-disabled]="respondida()"
+        (click)="elegir.emit(opcion.id)"
+      >
+        <span>{{ opcion.label }}</span>
+        @if (respondida() && opcion.id === pregunta().correctId) {
+          <span aria-hidden="true">✓</span><span class="solo-lector">(respuesta correcta)</span>
+        } @else if (opcion.id === seleccionadaId()) {
+          <span aria-hidden="true">✗</span><span class="solo-lector">(tu respuesta)</span>
+        }
+      </button>
+    }
+  </div>
+
+  <div aria-live="polite">
+    @if (respondida()) {
+      <p class="retroalimentacion" [class.acierto]="acerto()">
+        <strong>{{ acerto() ? '¡Correcto!' : '¡Casi!' }}</strong> {{ pregunta().explanation }}
+      </p>
+    }
+  </div>
+</app-tarjeta>

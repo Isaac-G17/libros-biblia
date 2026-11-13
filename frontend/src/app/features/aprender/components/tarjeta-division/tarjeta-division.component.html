@@ -1,0 +1,15 @@
+<a app-tarjeta interactiva class="division" [routerLink]="['/aprender', progreso().division.id]" [style.--color-categoria]="color()">
+  <h3 class="nombre">{{ progreso().division.name }}</h3>
+  <p class="descripcion">{{ progreso().division.description }}</p>
+  <app-barra-progreso
+    [valor]="progreso().seen"
+    [maximo]="progreso().total"
+    [etiqueta]="'Libros vistos de ' + progreso().division.name"
+  />
+  <p class="estado">
+    @if (completa()) {
+      <span aria-hidden="true">✓</span>
+    }
+    {{ progreso().seen }} de {{ progreso().total }} libros vistos
+  </p>
+</a>

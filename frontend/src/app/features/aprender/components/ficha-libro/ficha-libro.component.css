@@ -1,0 +1,9 @@
+:host { display: block; }
+.nombre { font-size: var(--texto-hero); }
+.testamento {
+  justify-self: start; padding: var(--espacio-1) var(--espacio-3);
+  border: 2px solid var(--color-borde-fuerte); border-radius: 999px; font-weight: 700;
+}
+.datos { display: grid; gap: var(--espacio-3); margin: 0; }
+.datos dt { color: var(--color-texto-suave); font-size: var(--texto-apoyo); font-weight: 700; }
+.datos dd { margin: 0; }

@@ -1,0 +1,14 @@
+<app-tarjeta>
+  <app-insignia-division [divisionId]="libro().divisionId" [nombre]="nombreDivision()" />
+  <h2 class="nombre">{{ libro().name }}</h2>
+  <p class="testamento">{{ etiquetaTestamento[libro().testament] }}</p>
+
+  <dl class="datos">
+    <div><dt>Lugar</dt><dd>Libro {{ libro().order }} de {{ totalLibros() }}</dd></div>
+    @if (!esNinos()) {
+      <div><dt>Autor</dt><dd>{{ libro().author }}</dd></div>
+      <div><dt>Capítulos</dt><dd>{{ libro().chapters }}</dd></div>
+    }
+    <div><dt>De qué trata</dt><dd>{{ libro().theme }}</dd></div>
+  </dl>
+</app-tarjeta>

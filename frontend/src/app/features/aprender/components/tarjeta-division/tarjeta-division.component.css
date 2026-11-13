@@ -1,0 +1,5 @@
+:host { display: block; }
+.division { border-inline-start: 0.5rem solid var(--color-categoria); }
+.nombre { color: var(--color-categoria); font-size: var(--texto-subtitulo); }
+.descripcion { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }
+.estado { font-weight: 600; font-size: var(--texto-apoyo); }

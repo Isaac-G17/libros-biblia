@@ -1,0 +1,31 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="6" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    <section class="pagina">
+      <h1>Aprender</h1>
+      <p class="apoyo">
+        {{ esNinos() ? 'Elige un grupo y conoce sus libros uno por uno.' : 'Los libros se agrupan en divisiones. Aprende una a la vez, en orden.' }}
+      </p>
+
+      @for (grupo of grupos(); track grupo.etiqueta) {
+        <h2>{{ grupo.etiqueta }}</h2>
+        <ul class="lista">
+          @for (item of grupo.items; track item.division.id) {
+            <li><app-tarjeta-division [progreso]="item" /></li>
+          }
+        </ul>
+      }
+    </section>
+  }
+}

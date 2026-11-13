@@ -1,4 +1,4 @@
-import { Book, Division } from '../models/book.model';
+import { Book, Division } from '../../models/book.model';
 import { PracticeContext, buildQuestion } from './practice';
 
 const book = (order: number, id: string, divisionId: string, author: string): Book => ({

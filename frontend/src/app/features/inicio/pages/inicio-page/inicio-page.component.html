@@ -1,0 +1,40 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="3" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    <section class="pagina">
+      @if (esNinos()) {
+        <p class="mascota" aria-hidden="true">🦉</p>
+      }
+      <h1>{{ titulo() }}</h1>
+
+      @if (paso(); as paso) {
+        <a app-boton variante="primario" bloque [routerLink]="paso.ruta">{{ paso.etiqueta }}</a>
+      }
+
+      @if (recorrido.seenCount() > 0) {
+        <app-tarjeta>
+          <h2>Tu avance</h2>
+          <app-barra-progreso
+            [valor]="recorrido.seenCount()"
+            [maximo]="recorrido.totalBooks()"
+            etiqueta="Libros vistos"
+          />
+          <p>Has visto <strong>{{ recorrido.seenCount() }}</strong> de {{ recorrido.totalBooks() }} libros.</p>
+        </app-tarjeta>
+      } @else {
+        <p class="apoyo">Es un buen momento para empezar. Solo toma unos minutos.</p>
+      }
+    </section>
+  }
+}

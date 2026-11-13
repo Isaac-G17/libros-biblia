@@ -1,0 +1,3 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.mascota { font-size: 3.5rem; line-height: 1; }
+.apoyo { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }

@@ -1,0 +1,49 @@
+@switch (catalogo.status()) {
+  @case ('loading') {
+    <app-esqueleto [lineas]="5" />
+  }
+  @case ('error') {
+    <app-mensaje-estado
+      tipo="error"
+      titulo="No pudimos cargar los libros"
+      mensaje="Revisa tu conexión e inténtalo de nuevo."
+      accionTexto="Reintentar"
+      (accion)="catalogo.load()"
+    />
+  }
+  @case ('ready') {
+    <section class="pagina">
+      <h1>Tu progreso</h1>
+
+      @if (recorrido.seenCount() === 0) {
+        <app-mensaje-estado titulo="Aún no hay progreso" mensaje="Cuando aprendas tus primeros libros, tu avance aparecerá aquí.">
+          <a app-boton variante="primario" routerLink="/aprender">Empezar a aprender</a>
+        </app-mensaje-estado>
+      } @else {
+        <app-tarjeta>
+          <p class="cifra">
+            @if (esNinos()) { <span aria-hidden="true">⭐</span> }
+            {{ recorrido.masteredCount() }}
+          </p>
+          <p>{{ esNinos() ? 'libros que ya dominas' : 'libros dominados de ' + recorrido.totalBooks() }}</p>
+          <app-barra-progreso [valor]="recorrido.seenCount()" [maximo]="recorrido.totalBooks()" etiqueta="Libros vistos" />
+          <p class="apoyo">
+            Has visto {{ recorrido.seenCount() }} de {{ recorrido.totalBooks() }} libros ({{ recorrido.percentSeen() }}%).
+            Dominas un libro cuando lo aciertas varias veces seguidas.
+          </p>
+        </app-tarjeta>
+
+        <h2>Por división</h2>
+        <ul class="divisiones">
+          @for (item of recorrido.divisions(); track item.division.id) {
+            <li>
+              <app-insignia-division [divisionId]="item.division.id" [nombre]="item.division.name" />
+              <app-barra-progreso [valor]="item.seen" [maximo]="item.total" [etiqueta]="'Libros vistos de ' + item.division.name" />
+              <p class="apoyo">{{ item.seen }} de {{ item.total }} vistos · {{ item.mastered }} dominados</p>
+            </li>
+          }
+        </ul>
+      }
+    </section>
+  }
+}

@@ -1,0 +1,6 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.cifra { font-size: var(--texto-hero); font-weight: 700; color: var(--color-primario); line-height: 1; }
+.apoyo { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }
+.divisiones { display: grid; gap: var(--espacio-4); margin: 0; padding: 0; list-style: none; }
+.divisiones li { display: grid; gap: var(--espacio-2); justify-items: start; }
+.divisiones app-barra-progreso { width: 100%; }

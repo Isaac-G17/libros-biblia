@@ -1,5 +1,5 @@
-import { Book } from '../models/book.model';
-import { Box, CardProgress } from '../models/progress.model';
+import { Book } from '../../models/book.model';
+import { Box, CardProgress } from '../../models/progress.model';
 import { nextBox, pickCards } from './leitner';
 
 const book = (id: string): Book => ({
