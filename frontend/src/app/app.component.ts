@@ -20,7 +20,7 @@ export class AppComponent {
   protected readonly destinos: readonly DestinoNavegacion[] = [
     { ruta: '/', etiqueta: 'Inicio', icono: '🏠', exacto: true },
     { ruta: '/aprender', etiqueta: 'Aprender', icono: '📚' },
-    { ruta: '/practicar', etiqueta: 'Practicar', icono: '✍️' },
+    { ruta: '/jugar', etiqueta: 'Jugar', icono: '🎮' },
     { ruta: '/progreso', etiqueta: 'Progreso', icono: '⭐' },
   ];
 }

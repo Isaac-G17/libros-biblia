@@ -1,0 +1,7 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.apoyo { color: var(--color-texto-suave); }
+.lista { display: grid; gap: var(--espacio-3); margin: 0; padding: 0; list-style: none; }
+.actividad { display: flex; align-items: center; gap: var(--espacio-4); text-decoration: none; color: var(--color-texto); }
+.icono { font-size: 2.25rem; line-height: 1; }
+.texto { display: grid; gap: var(--espacio-1); }
+.pista { color: var(--color-texto-suave); font-size: var(--texto-apoyo); font-weight: 500; }

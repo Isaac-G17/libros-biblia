@@ -1,0 +1,3 @@
+.pagina { display: grid; gap: var(--espacio-4); }
+.apoyo { color: var(--color-texto-suave); font-size: var(--texto-apoyo); }
+.apoyo a { color: var(--color-primario); font-weight: 700; }

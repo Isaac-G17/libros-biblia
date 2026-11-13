@@ -1,0 +1,18 @@
+<section class="pagina">
+  <h1>Jugar</h1>
+  <p class="apoyo">Elige una actividad para repasar lo que has aprendido.</p>
+
+  <ul class="lista">
+    @for (actividad of actividades; track actividad.ruta) {
+      <li>
+        <a app-tarjeta interactiva class="actividad" [routerLink]="actividad.ruta">
+          <span class="icono" aria-hidden="true">{{ actividad.icono }}</span>
+          <span class="texto">
+            <strong>{{ actividad.titulo }}</strong>
+            <span class="pista">{{ actividad.pista }}</span>
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

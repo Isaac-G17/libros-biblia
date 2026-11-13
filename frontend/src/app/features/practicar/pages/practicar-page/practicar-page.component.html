@@ -1,0 +1,43 @@
+
+@switch (catalogo.status()) {
+@case ('loading') {
+<app-esqueleto [lineas]="5" />
+}
+@case ('error') {
+<app-mensaje-estado tipo="error" titulo="No pudimos cargar los libros"
+  mensaje="Revisa tu conexión e inténtalo de nuevo." accionTexto="Reintentar" (accion)="catalogo.load()" />
+}
+@case ('ready') {
+<section class="pagina">
+  <app-boton-volver ruta="/jugar" etiqueta="Jugar" />
+  <h1>Practicar</h1>
+
+  @if (nombreDivision(); as nombre) {
+  <p class="apoyo">Solo «{{ nombre }}» · <a routerLink="/practicar">Practicar todo lo que he visto</a></p>
+  }
+
+  @if (sesion.finished()) {
+  <app-resultado-juego [aciertos]="sesion.correctCount()" [total]="sesion.total()" [esNinos]="esNinos()"
+    (repetir)="sesion.start(division())">
+    <a app-boton routerLink="/aprender">Aprender más</a>
+  </app-resultado-juego>
+  } @else if (sesion.current(); as pregunta) {
+  <app-barra-progreso [valor]="sesion.index()" [maximo]="sesion.total()" etiqueta="Avance de la ronda" />
+  <p class="apoyo">Pregunta {{ sesion.index() + 1 }} de {{ sesion.total() }}</p>
+
+  <app-pregunta [pregunta]="pregunta" [seleccionadaId]="sesion.selectedId()" (elegir)="sesion.choose($event)" />
+
+  @if (sesion.answered()) {
+  <button type="button" app-boton variante="primario" bloque (click)="sesion.next()">
+    {{ sesion.isLast() ? 'Ver resultado' : 'Siguiente' }}
+  </button>
+  }
+  } @else {
+  <app-mensaje-estado titulo="Aún no has visto libros"
+    [mensaje]="nombreDivision() ? 'Aprende primero esta división y vuelve a practicar.' : 'Aprende algunos libros y vuelve a practicar.'">
+    <a app-boton variante="primario" routerLink="/aprender">Ir a Aprender</a>
+  </app-mensaje-estado>
+  }
+</section>
+}
+}
