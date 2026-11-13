@@ -115,7 +115,7 @@ libros-biblia/
 ### Instalación
 
 ```bash
-git clone https://github.com/tu-usuario/libros-biblia.git
+git clone https://github.com/Isaac-G17/libros-biblia.git
 cd libros-biblia/frontend
 npm install
 ```
